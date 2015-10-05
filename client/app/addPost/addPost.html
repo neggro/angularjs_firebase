@@ -1,0 +1,32 @@
+<div class="container">
+    <form class="form-horizontal" ng-submit="vm.addPost()">
+        <fieldset>
+            <!-- Form Name -->
+            <legend>Create Post</legend>
+            <!-- Text input-->
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="txtTitle">Title</label>
+                <div class="col-md-4">
+                    <input id="txtTitle" name="txtTitle" ng-model="vm.article.title" type="text" placeholder="placeholder" class="form-control input-md">
+                </div>
+            </div>
+            <!-- Textarea -->
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="txtPost">Post</label>
+                <div class="col-md-4">
+                    <textarea class="form-control" id="txtPost" ng-model="vm.article.post" name="txtPost"></textarea>
+                </div>
+            </div>
+            <!-- Button -->
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="singlebutton"></label>
+                <div class="col-md-4">
+                    <button data-style="expand-right" ng-disabled="!vm.article.title || !vm.article.post" name="singlebutton" class="btn btn-primary segoe-ui-light" type="submit">
+                        <span>Publish</span>
+                    </button>
+                </div>
+            </div>
+        </fieldset>
+    </form>
+</div>
+<!-- /.container -->
