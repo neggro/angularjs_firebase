@@ -3,7 +3,7 @@
 
     // Declare app level module which depends on views, and components
     angular.module('myApp', [
-        'myApp.home',
+        'myApp.login',
         'myApp.register',
         'myApp.welcome',
         'myApp.addPost',
@@ -15,7 +15,9 @@
     .run(function ($rootScope, $state, userService) {
         $rootScope.$on('$stateChangeStart', function (e, toState) {
             if (toState.authRequired && !userService.getUser()) {
-                $state.go('home');
+                // this is key to does not allow to load the new state
+                e.preventDefault();
+                $state.go('login');
             }
         });
     })
@@ -23,7 +25,7 @@
     .config([
         '$urlRouterProvider',
         function ($urlRouterProvider, userService) {
-            $urlRouterProvider.otherwise('/home');
+            $urlRouterProvider.otherwise('/login');
         }
     ]);
 

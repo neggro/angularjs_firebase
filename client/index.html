@@ -18,7 +18,7 @@
     <script src="bower_components/firebase/firebase.js"></script>
     <script src="bower_components/angularfire/dist/angularfire.js"></script>
     <script src="app/app.module.js"></script>
-    <script src="app/home/home.js"></script>
+    <script src="app/login/login.js"></script>
     <script src="app/register/register.js"></script>
     <script src="app/welcome/welcome.js"></script>
     <script src="app/addPost/addPost.module.js"></script>
@@ -31,7 +31,7 @@
 </head>
 <body>
     <div class="blog-masthead" ng-controller="NavController as vm">
-        <div class="container">
+        <div class="container" ng-if="vm.user">
             <nav class="blog-nav">
                 <a class="blog-nav-item {{vm.currentState === 'welcome' && 'active'}}" href="#/welcome">Home</a>
                 <a class="blog-nav-item {{vm.currentState === 'addPost' && 'active'}}" href="#/add-post">Add Post</a>

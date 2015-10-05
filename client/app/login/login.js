@@ -1,7 +1,7 @@
 (function myAppHome () {
     'use strict';
 
-    angular.module('myApp.home', [
+    angular.module('myApp.login', [
         'ui.router'
     ])
 
@@ -9,9 +9,9 @@
         '$stateProvider',
         function ($stateProvider) {
             $stateProvider
-                .state('home', {
-                    url: '/home',
-                    templateUrl: 'app/home/home.html',
+                .state('login', {
+                    url: '/login',
+                    templateUrl: 'app/login/login.html',
                     controller: 'HomeCtrl'
                 });
         }
@@ -73,7 +73,7 @@
                     firebaseRef.unauth();
                     user = '';
                     localStorage.removeItem('userEmail');
-                    $state.go('home');
+                    $state.go('login');
                 }
             };
 

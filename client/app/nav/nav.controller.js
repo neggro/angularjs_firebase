@@ -12,9 +12,11 @@
         var vm = this;
         vm.logout = logout;
         vm.currentState = $state.current.name;
+        vm.user = userService.getUser();
 
         $rootScope.$on('$stateChangeSuccess', function () {
             vm.currentState = $state.current.name;
+            vm.user = userService.getUser();
         });
 
         function logout () {
