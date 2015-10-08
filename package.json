@@ -1,9 +1,9 @@
 {
     "name": "angular-seed",
-    "private": true,
-    "version": "0.0.0",
-    "description": "A starter project for AngularJS",
-    "repository": "https://github.com/angular/angular-seed",
+    "private": false,
+    "version": "0.0.1",
+    "description": "An AngularJS & Firebase demo project",
+    "repository": "https://github.com/neggro/angularjs_firebase",
     "license": "MIT",
     "devDependencies": {
         "karma": "~0.10",
