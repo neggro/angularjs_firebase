@@ -2,18 +2,18 @@
     <div class="jumbotron" style="padding-bottom:0px;">
         <h2>AngularJS &amp; Firebase App!</h2>
     </div>
-    <form class="form-signin" name="regForm">
-        <div class="form-group" ng-class="{ 'has-error' : regForm.email.$invalid }">
+    <form class="form-signin" name="vm.regForm" ng-submit="vm.regForm.$valid && vm.signUp();">
+        <div class="form-group" ng-class="{ 'has-error' : vm.regForm.email.$invalid }">
             <label>Email</label>
-            <input type="email" name="email" class="form-control" ng-model="user.email">
-            <p class="help-block" ng-show="regForm.email.$invalid">Enter a valid email.</p>
+            <input type="email" name="email" class="form-control" ng-model="vm.user.email">
+            <p class="help-block" ng-show="vm.regForm.email.$invalid">Enter a valid email.</p>
         </div>
-        <div class="form-group" ng-class="{ 'has-error' : regForm.password.$invalid }">
+        <div class="form-group" ng-class="{ 'has-error' : vm.regForm.password.$invalid }">
             <label>Password</label>
-            <input type="password" name="password" class="form-control" ng-model="user.password" ng-minlength="8">
-            <p class="help-block" ng-show="regForm.password.$error.minlength">Min password length is 8 characters.</p>
+            <input type="password" name="password" class="form-control" ng-model="vm.user.password" ng-minlength="8">
+            <p class="help-block" ng-show="vm.regForm.password.$error.minlength">Min password length is 8 characters.</p>
             <p style="color:red;" ng-show="regError">{{regErrorMessage}}</p>
         </div>
-        <button type="button" data-style="expand-right" ng-click="signUp();" ng-disabled="!user.email || !user.password" class="btn btn-lg segoe-ui-light btn-primary btn-block">Register</button>
+        <button type="submit" data-style="expand-right" ng-disabled="!vm.user.email || !vm.user.password" class="btn btn-lg segoe-ui-light btn-primary btn-block">Register</button>
     </form>
 </div>

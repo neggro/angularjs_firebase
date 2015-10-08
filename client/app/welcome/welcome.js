@@ -2,8 +2,7 @@
     'use strict';
 
     angular.module('myApp.welcome', [
-        'ui.router',
-        'firebase'
+        'ui.router'
     ])
 
     .config(['$stateProvider', function ($stateProvider) {
@@ -18,63 +17,56 @@
 
     .controller('WelcomeCtrl', [
         '$scope',
-        '$firebaseObject',
-        '$firebaseArray',
-        'userService',
+        'authService',
         'firebaseService',
-        function ($scope, $firebaseObject, $firebaseArray, userService, firebaseService) {
+        function ($scope, authService, firebaseService) {
 
-            $scope.username = userService.getUser();
+            var vm = this;
+
+            $scope.username = authService.getUser();
 
             activate();
 
             $scope.editPost = function (id) {
-                console.log(id);
-                var articleRef = new Firebase('https://blistering-heat-2473.firebaseio.com/Articles/' +
-                    id);
-                $scope.postToUpdate = $firebaseObject(articleRef);
+                $scope.postToUpdate = firebaseService.getArticleObjectById(id);
                 $('#editModal').modal();
             };
 
             $scope.update = function () {
-                console.log($scope.postToUpdate.$id);
-                $scope.postToUpdate.$update({
-                    title: $scope.postToUpdate.title,
-                    post: $scope.postToUpdate.post,
-                    emailId: $scope.postToUpdate.emailId
-                }, function (error) {
-                    if (error) {
-                        console.log('Error:', error);
-                    } else {
+                $scope.postToUpdate.$save()
+                    .then(function () {
                         $('#editModal').modal('hide');
-                    }
-                });
+                    },function (error) {
+                        if (error) {
+                            console.log('Error:', error);
+                        }
+                    });
             };
 
             $scope.confirmDelete = function (id) {
-                var articleRef = new Firebase('https://blistering-heat-2473.firebaseio.com/Articles/' +
-                    id);
-                $scope.postToDelete = $firebaseObject(articleRef);
+                $scope.postToDelete = firebaseService.getArticleObjectById(id);
                 $('#deleteModal').modal();
             };
 
             $scope.deletePost = function () {
-                $scope.postToDelete.$remove().then(function () {
-                    $('#deleteModal').modal('hide');
-                },
-                function (error) {
-                    console.log('Error:', error);
-                });
+                $scope.postToDelete.$remove()
+                    .then(function () {
+                        $('#deleteModal').modal('hide');
+                    },
+                    function (error) {
+                        console.log('Error:', error);
+                    });
             };
 
             function activate() {
-                return firebaseService.getPosts($scope.username).then(function (posts) {
-                    $scope.articles = posts;
-                    console.log($scope.articles);
-                    return $scope.articles;
-                }, function (error) {
-                    console.log('Error:', error);
-                });
+                return firebaseService.getPosts($scope.username)
+                    .then(function (posts) {
+                        $scope.articles = posts;
+                        console.log($scope.articles);
+                        return $scope.articles;
+                    }, function (error) {
+                        console.log('Error:', error);
+                    });
             }
         }
     ]);

@@ -5,22 +5,22 @@
         .module('myApp.nav')
         .controller('NavController', NavController);
 
-    NavController.$inject = ['$rootScope', '$state', 'userService'];
+    NavController.$inject = ['$rootScope', '$state', 'authService'];
 
     /* @ngInject */
-    function NavController($rootScope, $state, userService) {
+    function NavController($rootScope, $state, authService) {
         var vm = this;
         vm.logout = logout;
         vm.currentState = $state.current.name;
-        vm.user = userService.getUser();
+        vm.user = authService.getUser();
 
         $rootScope.$on('$stateChangeSuccess', function () {
             vm.currentState = $state.current.name;
-            vm.user = userService.getUser();
+            vm.user = authService.getUser();
         });
 
         function logout () {
-            userService.logoutUser();
+            authService.logoutUser();
         }
     }
 

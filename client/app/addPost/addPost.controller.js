@@ -6,12 +6,12 @@
 
         .controller('AddPostCtrl', [
             '$state',
-            'userService',
+            'authService',
             'firebaseService',
-            function ($state, userService, firebaseService) {
+            function ($state, authService, firebaseService) {
 
                 var vm = this;
-                var user = userService.getUser();
+                var user = authService.getUser();
                 vm.addPost = addPost;
 
                 function addPost() {

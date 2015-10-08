@@ -15,34 +15,28 @@
     function firebaseService(FIREBASE_URL, $firebaseObject, $firebaseArray) {
 
         var service = {
+            firebaseRef: new Firebase(FIREBASE_URL),
             getPosts: getPosts,
             addPost: addPost,
-            updatePost: updatePost,
-            deletePost: deletePost
+            getArticleObjectById: getArticleObjectById
         };
 
-        var ARTICLES_URL = FIREBASE_URL + '/Articles';
-
-        service.articlesRef = service.articlesRef || new Firebase(ARTICLES_URL);
-        service.articlesArray = service.articlesArray || $firebaseArray(service.articlesRef);
+        var articlesRef = articlesRef || service.firebaseRef.child('Articles');
+        var articlesArray = articlesArray || $firebaseArray(articlesRef);
 
         return service;
 
         function getPosts(user) {
-            var articlesQuery = service.articlesRef.orderByChild('emailId').equalTo(user);
+            var articlesQuery = articlesRef.orderByChild('emailId').equalTo(user);
             return $firebaseArray(articlesQuery).$loaded();
         }
 
         function addPost(post) {
-            return service.articlesArray.$add(post);
+            return articlesArray.$add(post);
         }
 
-        function updatePost(id) {
-            // not implemented
-        }
-
-        function deletePost(id) {
-            // not implemented
+        function getArticleObjectById(articleId) {
+            return $firebaseObject(articlesRef.child(articleId));
         }
     }
 

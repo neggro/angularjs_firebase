@@ -3,31 +3,49 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
     <title>My AngularJS App</title>
+
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+
     <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="//getbootstrap.com/examples/signin/signin.css">
     <link rel="stylesheet" href="styles/app.css">
     <link rel="stylesheet" href="styles/blog.css">
     <link rel="stylesheet" href="styles/justified-nav.css">
+
     <script src="bower_components/jquery/dist/jquery.js"></script>
     <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
     <script src="bower_components/angular/angular.js"></script>
     <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
     <script src="bower_components/firebase/firebase.js"></script>
     <script src="bower_components/angularfire/dist/angularfire.js"></script>
+
     <script src="app/app.module.js"></script>
-    <script src="app/login/login.js"></script>
-    <script src="app/register/register.js"></script>
+
+    <script src="app/login/login.module.js"></script>
+    <script src="app/login/login.config.js"></script>
+    <script src="app/login/login.controller.js"></script>
+
+    <script src="app/register/register.module.js"></script>
+    <script src="app/register/register.config.js"></script>
+    <script src="app/register/register.controller.js"></script>
+
     <script src="app/welcome/welcome.js"></script>
+
     <script src="app/addPost/addPost.module.js"></script>
     <script src="app/addPost/addPost.config.js"></script>
     <script src="app/addPost/addPost.controller.js"></script>
+
     <script src="app/nav/nav.module.js"></script>
     <script src="app/nav/nav.controller.js"></script>
+
     <script src="app/firebase/firebase.module.js"></script>
     <script src="app/firebase/firebase.service.js"></script>
+
+    <script src="app/auth/auth.module.js"></script>
+    <script src="app/auth/auth.service.js"></script>
 </head>
 <body>
     <div class="blog-masthead" ng-controller="NavController as vm">
