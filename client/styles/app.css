@@ -1,30 +1,149 @@
-/* app css stylesheet */
-
-.menu {
-    list-style: none;
-    border-bottom: 0.1em solid black;
-    margin-bottom: 2em;
-    padding: 0 0 0.5em;
+@font-face {
+    font-family: 'Material Icons';
+    font-style: normal;
+    font-weight: 400;
+    src: url(../bower_components/material-design-icons/iconfont/MaterialIcons-Regular.eot);
+    /* For IE6-8 */
+    src: local('Material Icons'), local('MaterialIcons-Regular'),
+    url(../bower_components/material-design-icons/iconfont/MaterialIcons-Regular.woff2) format('woff2'),
+    url(../bower_components/material-design-icons/iconfont/MaterialIcons-Regular.woff) format('woff'),
+    url(../bower_components/material-design-icons/iconfont/MaterialIcons-Regular.ttf) format('truetype');
 }
 
-.menu:before {
-    content: "[";
+.material-icons {
+    font-family: 'Material Icons';
+    font-weight: normal;
+    font-style: normal;
+    /* Preferred icon size */
+    font-size: 24px;
+    display: inline-block;
+    /*width: 1em;
+    height: 1em;
+    line-height: 1;*/
+    text-transform: none;
+    letter-spacing: normal;
+    word-wrap: normal;
+    white-space: nowrap;
+    direction: ltr;
+
+    /* Support for all WebKit browsers. */
+    -webkit-font-smoothing: antialiased;
+    /* Support for Safari and Chrome. */
+    text-rendering: optimizeLegibility;
+
+    /* Support for Firefox. */
+    -moz-osx-font-smoothing: grayscale;
+
+    /* Support for IE. */
+    font-feature-settings: 'liga';
 }
 
-.menu:after {
-    content: "]";
+html,
+body {
+    font-size: 14px;
+    min-width: 320px;
 }
 
-.menu > li {
-    display: inline;
+md-content {
+    background: #303030;
 }
 
-.menu > li:before {
-    content: "|";
-    padding-right: 0.3em;
+md-card {
+    background: #424242;
+    margin-bottom: 30px;
 }
 
-.menu > li:nth-child(1):before {
-    content: "";
+/* Rules for sizing the icon. */
+.material-icons.md-18 {
+    font-size: 18px;
+}
+.material-icons.md-24 {
+    font-size: 24px;
+}
+.material-icons.md-36 {
+    font-size: 36px;
+}
+.material-icons.md-48 {
+    font-size: 48px;
+}
+
+/* Rules for using icons as black on a light background. */
+.material-icons.md-dark {
+    color: rgba(0, 0, 0, 0.54);
+}
+.material-icons.md-dark.md-inactive {
+    color: rgba(0, 0, 0, 0.26);
+}
+
+/* Rules for using icons as white on a dark background. */
+.material-icons.md-light {
+    color: rgba(255, 255, 255, 1);
+}
+.material-icons.md-light.md-inactive {
+    color: rgba(255, 255, 255, 0.3);
+}
+
+
+.main {
+    min-height: 100%;
+}
+
+md-toolbar md-icon.md-default-theme {
+    color: white;
+}
+
+.more-menu-content {
+    color: #ffffff;
+}
+
+.md-button.md-fab.add-post-btn,
+.md-button.md-fab.add-post-btn:hover {
+    background: rgb(103, 58, 183);
+    bottom: 5px;
+    position: fixed;
+    right: 5px;
+}
+
+.md-title.article-title {
+    margin-top: 0;
+}
+
+.article-wrapper .md-actions {
+    margin-bottom: -41px;
+}
+
+.md-actions .md-button.md-fab.confirm-btn,
+.md-actions .md-button.md-fab.confirm-btn:hover {
+    background: #4CAF50;
+}
+
+.md-actions .md-button.md-fab.alert-btn,
+.md-actions .md-button.md-fab.alert-btn:hover {
+    background: #f44336;
+}
+
+.md-actions .md-button:first-child {
+    margin-right: 10px;
+}
+
+.welcome-header {
+    border-bottom: 1px solid #ffffff;
+    font-size: 16px;
+    margin: 15px 8px;
+    padding-bottom: 8px;
+}
+
+.blog-footer {
+    background-color: #212121;
+    border-top: 1px solid #9e9e9e;
+    color: #9e9e9e;
+    font-size: 13px;
+    padding: 16px 0;
+    text-align: center;
+}
+
+.blog-footer p {
+    line-height: 17px;
+    margin: 0;
     padding: 0;
 }
