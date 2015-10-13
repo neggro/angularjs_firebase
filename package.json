@@ -5,14 +5,16 @@
     "description": "An AngularJS & Firebase demo project",
     "repository": "https://github.com/neggro/angularjs_firebase",
     "license": "MIT",
+    "dependencies": {
+        "express": "~4.12.2"
+    },
     "devDependencies": {
         "karma": "~0.10",
         "protractor": "^1.1.1",
         "http-server": "^0.6.1",
         "bower": "^1.3.3",
         "shelljs": "^0.2.6",
-        "karma-junit-reporter": "^0.2.2",
-        "express": "^4.8.4"
+        "karma-junit-reporter": "^0.2.2"
     },
     "scripts": {
         "start": "http-server ./client -a localhost -p 8000 -c-1",
