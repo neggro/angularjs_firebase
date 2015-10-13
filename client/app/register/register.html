@@ -1,19 +1,18 @@
 <div class="container">
-    <div class="jumbotron" style="padding-bottom:0px;">
-        <h2>AngularJS &amp; Firebase App!</h2>
-    </div>
-    <form class="form-signin" name="vm.regForm" ng-submit="vm.regForm.$valid && vm.signUp();">
-        <div class="form-group" ng-class="{ 'has-error' : vm.regForm.email.$invalid }">
+    <header class="container-header">Register</header>
+    <form ng-show="!vm.loading" name="vm.regForm" ng-submit="vm.regForm.$valid && vm.signUp();">
+        <md-input-container>
             <label>Email</label>
-            <input type="email" name="email" class="form-control" ng-model="vm.user.email">
-            <p class="help-block" ng-show="vm.regForm.email.$invalid">Enter a valid email.</p>
-        </div>
-        <div class="form-group" ng-class="{ 'has-error' : vm.regForm.password.$invalid }">
+            <input type="email" name="email" ng-model="vm.user.email" required>
+        </md-input-container>
+        <md-input-container>
             <label>Password</label>
-            <input type="password" name="password" class="form-control" ng-model="vm.user.password" ng-minlength="8">
-            <p class="help-block" ng-show="vm.regForm.password.$error.minlength">Min password length is 8 characters.</p>
-            <p style="color:red;" ng-show="regError">{{regErrorMessage}}</p>
+            <input type="password" name="password" ng-model="vm.user.password" ng-minlength="3" required>
+        </md-input-container>
+        <div class="md-actions" layout="row" layout-align="start center">
+            <md-button class="md-raised md-primary" ng-disabled="vm.regForm.$invalid" type="submit" aria-label="Register">Sign Up</md-button>
+            <md-button ng-href="#/login">Sign In</md-button>
         </div>
-        <button type="submit" data-style="expand-right" ng-disabled="!vm.user.email || !vm.user.password" class="btn btn-lg segoe-ui-light btn-primary btn-block">Register</button>
     </form>
+    <md-progress-circular ng-show="vm.loading" md-mode="indeterminate" class="md-accent"></md-progress-circular>
 </div>

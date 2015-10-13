@@ -13,16 +13,27 @@
     <link rel="stylesheet" href="/bower_components/angular-material/angular-material.css" />
 
     <link rel="stylesheet" href="styles/app.css">
-    <!-- link rel="stylesheet" href="styles/blog.css">
-    <link rel="stylesheet" href="styles/justified-nav.css" -->
 
-    <script src="bower_components/jquery/dist/jquery.js"></script>
-    <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+    <style type="text/css">
+        /**
+         * Hide when Angular is not yet loaded and initialized
+         */
+        [ng\:cloak],
+        [ng-cloak],
+        [data-ng-cloak],
+        [x-ng-cloak],
+        .ng-cloak,
+        .x-ng-cloak {
+            display: none !important;
+        }
+    </style>
+
     <script src="bower_components/angular/angular.js"></script>
     <script src="bower_components/angular-animate/angular-animate.js"></script>
     <script src="bower_components/angular-aria/angular-aria.js"></script>
     <script src="bower_components/angular-material/angular-material.js"></script>
     <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+
     <script src="bower_components/firebase/firebase.js"></script>
     <script src="bower_components/angularfire/dist/angularfire.js"></script>
 
@@ -41,7 +52,7 @@
     <script src="app/welcome/welcome.controller.js"></script>
 
     <script src="app/addPost/addPost.module.js"></script>
-    <script src="app/addPost/addPost.config.js"></script>
+    <!-- script src="app/addPost/addPost.config.js"></script -->
     <script src="app/addPost/addPost.controller.js"></script>
 
     <script src="app/nav/nav.module.js"></script>
@@ -54,30 +65,20 @@
     <script src="app/auth/auth.service.js"></script>
 </head>
 <body>
-    <!-- div class="blog-masthead" ng-controller="NavController as vm">
-        <div class="container" ng-if="vm.user">
-            <nav class="blog-nav">
-                <a class="blog-nav-item {{vm.currentState === 'welcome' && 'active'}}" href="#/welcome">Home</a>
-                <a class="blog-nav-item {{vm.currentState === 'addPost' && 'active'}}" href="#/add-post">Add Post</a>
-                <a class="blog-nav-item" ng-click="vm.logout();">Logout</a>
-            </nav>
-        </div>
-    </div -->
-
-    <div layout="column" class="main">
+    <div layout="column" class="main" ng-controller="NavController as vm" ng-cloak>
         <header>
             <md-toolbar>
                 <div class="md-toolbar-tools">
-                    <!-- md-button class="md-icon-button" aria-label="Settings">
-                        <i class="material-icons md-24 md-light">menu</i>
-                    </md-button -->
                     <h1>Awesome Blog</h1>
                     <span flex></span>
-                    <md-menu md-position-mode="target-right target">
+                    <md-menu ng-if="vm.user" md-position-mode="target-right target">
                         <md-button class="md-icon-button" aria-label="More" ng-click="$mdOpenMenu($event);">
                             <i class="material-icons md-24 md-light">more_vert</i>
                         </md-button>
                         <md-menu-content class="more-menu-content">
+                            <md-menu-item>
+                                <md-button ng-click="vm.userInfo();">User info</md-button>
+                            </md-menu-item>
                             <md-menu-item>
                                 <md-button ng-click="vm.logout();">Logout</md-button>
                             </md-menu-item>
@@ -89,15 +90,9 @@
         <md-content flex>
             <ui-view></ui-view>
         </md-content>
-
         <footer class="blog-footer">
             <p>AngularJS &amp; Firebase Blog App</p>
-            <md-button class="md-fab add-post-btn" aria-label="Add Post">
-                <i class="material-icons md-36 md-light">add</i>
-            </md-button>
         </footer>
-
     </div>
-
 </body>
 </html>

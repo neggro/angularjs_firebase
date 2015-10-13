@@ -38,21 +38,6 @@
     font-feature-settings: 'liga';
 }
 
-html,
-body {
-    font-size: 14px;
-    min-width: 320px;
-}
-
-md-content {
-    background: #303030;
-}
-
-md-card {
-    background: #424242;
-    margin-bottom: 30px;
-}
-
 /* Rules for sizing the icon. */
 .material-icons.md-18 {
     font-size: 18px;
@@ -84,8 +69,65 @@ md-card {
 }
 
 
+/* fix for autcomplete inputs in chrome */
+input:-webkit-autofill {
+    -webkit-text-fill-color: rgba(255, 255, 255, 0.87) !important;
+    -webkit-box-shadow: 0 0 0px 1000px #303030 inset;
+}
+
+html,
+body {
+    color: rgba(255, 255, 255, 0.87);
+    font-size: 14px;
+    min-width: 320px;
+}
+
+md-content {
+    background: #303030;
+}
+
+md-card {
+    background: #424242;
+    margin-bottom: 30px;
+}
+
+md-backdrop.md-opaque {
+    background-color: rgba(254, 254, 254, 1);
+}
+
+md-progress-circular {
+    margin: 50px auto 0;
+}
+
 .main {
     min-height: 100%;
+}
+
+/* container from bootstrap */
+.container {
+    padding-left: 8px;
+    padding-right: 8px;
+    margin-left: auto;
+    margin-right: auto;
+}
+@media (min-width: 768px) {
+    .container {
+        width: 750px;
+    }
+}
+@media (min-width: 992px) {
+    .container {
+        width: 970px;
+    }
+}
+@media (min-width: 1200px) {
+    .container {
+        width: 1170px;
+    }
+}
+
+.container-dialog {
+    padding: 0 10px;
 }
 
 md-toolbar md-icon.md-default-theme {
@@ -98,7 +140,6 @@ md-toolbar md-icon.md-default-theme {
 
 .md-button.md-fab.add-post-btn,
 .md-button.md-fab.add-post-btn:hover {
-    background: rgb(103, 58, 183);
     bottom: 5px;
     position: fixed;
     right: 5px;
@@ -112,6 +153,11 @@ md-toolbar md-icon.md-default-theme {
     margin-bottom: -41px;
 }
 
+.md-button.md-primary.md-raised,
+.md-button.md-primary.md-raised:not([disabled]):hover {
+    background: #673AB7;
+}
+
 .md-actions .md-button.md-fab.confirm-btn,
 .md-actions .md-button.md-fab.confirm-btn:hover {
     background: #4CAF50;
@@ -122,14 +168,14 @@ md-toolbar md-icon.md-default-theme {
     background: #f44336;
 }
 
-.md-actions .md-button:first-child {
+.article-wrapper .md-actions .md-button:first-child {
     margin-right: 10px;
 }
 
-.welcome-header {
+.container-header {
     border-bottom: 1px solid #ffffff;
     font-size: 16px;
-    margin: 15px 8px;
+    margin: 15px 0;
     padding-bottom: 8px;
 }
 
@@ -146,4 +192,14 @@ md-toolbar md-icon.md-default-theme {
     line-height: 17px;
     margin: 0;
     padding: 0;
+}
+
+/* accept button */
+md-dialog .md-actions .md-button {
+    color: #81C784;
+}
+
+/* cancel button */
+md-dialog .md-actions .md-button:first-child {
+    color: #e57373;
 }

@@ -3,29 +3,54 @@
 
     angular
         .module('myApp.addPost')
+        .controller('AddPostController', AddPostController);
 
-        .controller('AddPostCtrl', [
-            '$state',
-            'authService',
-            'firebaseService',
-            function ($state, authService, firebaseService) {
+    AddPostController.$inject = [
+        '$mdDialog',
+        'authService',
+        'firebaseService'
+    ];
 
-                var vm = this;
-                var user = authService.getUser();
-                vm.addPost = addPost;
+    /* @ngInject */
+    function AddPostController($mdDialog, authService, firebaseService) {
 
-                function addPost() {
-                    firebaseService.addPost({
+        var vm = this;
+        var user = authService.getUser();
+        vm.article = vm.postToUpdate;
+        vm.managePost = managePost;
+        vm.hideDialog = hideDialog;
+
+        // create or update a post
+        function managePost() {
+
+            // update
+            if (vm.postToUpdate) {
+
+                vm.postToUpdate
+                    .$save()
+                    .then(hideDialog, function (error) {
+                        if (error) {
+                            console.log('Error:', error);
+                        }
+                    });
+
+            } else {
+
+                firebaseService
+                    .addPost({
                         title: vm.article.title,
                         post: vm.article.post,
                         emailId: user
-                    }).then(function () {
-                        $state.go('welcome');
-                    }, function(error) {
+                    }).then(hideDialog, function (error) {
                         console.log('Error:', error);
                     });
-                }
             }
-        ]);
+
+        }
+
+        function hideDialog() {
+            $mdDialog.hide();
+        }
+    }
 
 })();
