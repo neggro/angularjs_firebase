@@ -13,6 +13,8 @@
         "console": false,
         "localStorage": false,
         "window": false,
-        "$": false
+        "$": false,
+        "require": false,
+        "process": false
     }
 }
