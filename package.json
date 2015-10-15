@@ -19,7 +19,7 @@
     "scripts": {
         "postinstall": "bower install",
 
-        "start": "http-server ./client --ssl --silent",
+        "start": "http-server ./client --silent",
 
         "pretest": "npm install",
         "test": "karma start karma.conf.js",
