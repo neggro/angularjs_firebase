@@ -2,7 +2,5 @@
     'use strict';
 
     angular
-        .module('myApp.register', [
-            'ui.router'
-        ]);
+        .module('myApp.register', []);
 })();

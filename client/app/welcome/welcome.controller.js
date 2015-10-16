@@ -8,17 +8,16 @@
     WelcomeController.$inject = [
         'authService',
         'firebaseService',
-        '$mdDialog'
+        '$mdDialog',
+        '$mdToast'
     ];
 
     /* @ngInject */
-    function WelcomeController(authService, firebaseService, $mdDialog) {
+    function WelcomeController(authService, firebaseService, $mdDialog, $mdToast) {
 
         var vm = this;
         vm.username = authService.getUser();
         vm.articles = [];
-        // vm.editPost = editPost;
-        // vm.update = update;
         vm.confirmDelete = confirmDelete;
         vm.postDialog = postDialog;
         vm.loading = true;
@@ -27,14 +26,11 @@
 
         function activate() {
             return firebaseService.getPosts(vm.username)
-                .then(function (posts) {
+                .then(function successCallback(posts) {
                     vm.articles = posts;
-                    // console.log(vm.articles);
                     vm.loading = false;
                     return vm.articles;
-                }, function (error) {
-                    console.log('Error:', error);
-                });
+                }, displayError);
         }
 
         function postDialog(event, id) {
@@ -50,20 +46,10 @@
                 locals: {
                     postToUpdate: postToUpdate
                 },
-                bindToController: true
+                bindToController: true,
+                focusOnOpen: false
             });
         }
-
-        /*function update() {
-            vm.postToUpdate.$save()
-                .then(function () {
-                    //
-                },function (error) {
-                    if (error) {
-                        console.log('Error:', error);
-                    }
-                });
-        }*/
 
         function confirmDelete(id, event) {
 
@@ -80,10 +66,17 @@
                 .then(function acceptCallback() {
                     firebaseService.getArticleObjectById(id)
                         .$remove()
-                        .catch(function catchCallback(error) {
-                            console.log('Error:', error);
-                        });
+                        .catch(displayError);
                 });
+        }
+
+        function displayError(error) {
+
+            var toastContent = $mdToast
+                .simple()
+                .content(error);
+
+            $mdToast.show(toastContent);
         }
     }
 

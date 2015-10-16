@@ -7,11 +7,12 @@
 
     RegisterController.$inject = [
         '$state',
+        '$mdToast',
         'authService'
     ];
 
     /* @ngInject */
-    function RegisterController($state, authService) {
+    function RegisterController($state, $mdToast, authService) {
 
         var vm = this;
         vm.signUp = signUp;
@@ -38,14 +39,14 @@
 
                     switch (error.code) {
                     case 'EMAIL_TAKEN':
-                        console.log('The new user account cannot be created because ' +
+                        displayError('The new user account cannot be created because ' +
                             'the email is already in use.');
                         break;
                     case 'INVALID_EMAIL':
-                        console.log('The specified email is not a valid email.');
+                        displayError('The specified email is not a valid email.');
                         break;
                     default:
-                        console.log('Error creating user:', error);
+                        displayError('Error creating user:', error);
                         break;
                     }
                     vm.regError = true;
@@ -54,6 +55,15 @@
 
                 vm.loading = false;
             });
+        }
+
+        function displayError(error) {
+
+            var toastContent = $mdToast
+                .simple()
+                .content(error);
+
+            $mdToast.show(toastContent);
         }
     }
 

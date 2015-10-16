@@ -1,4 +1,4 @@
-(function() {
+(function myAppAuthService() {
     'use strict';
 
     angular

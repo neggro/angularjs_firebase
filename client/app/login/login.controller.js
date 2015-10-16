@@ -6,11 +6,12 @@
     .controller('LoginCtrl', LoginCtrl);
 
     LoginCtrl.$inject = [
-        'authService'
+        'authService',
+        '$mdToast'
     ];
 
     /* @ngInject */
-    function LoginCtrl (authService) {
+    function LoginCtrl (authService, $mdToast) {
 
         var vm = this;
         vm.user = {};
@@ -25,12 +26,20 @@
                 email: vm.user.email,
                 password: vm.user.password
             })
-            .then(function () {
+            .then(function successCallback() {
                 vm.loading = false;
-            }, function catchCallback(error) {
-                alert(error);
-                vm.loading = false;
-            });
+            }, displayError);
+        }
+
+        function displayError(error) {
+
+            var toastContent = $mdToast
+                .simple()
+                .content(error);
+
+            vm.loading = false;
+
+            $mdToast.show(toastContent);
         }
     }
 

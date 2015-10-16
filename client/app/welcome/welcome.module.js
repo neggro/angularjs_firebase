@@ -2,8 +2,6 @@
     'use strict';
 
     angular
-        .module('myApp.welcome', [
-            'ui.router'
-        ]);
+        .module('myApp.welcome', []);
 
 })();

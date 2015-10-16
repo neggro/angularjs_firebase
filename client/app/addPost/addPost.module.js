@@ -2,8 +2,6 @@
     'use strict';
 
     angular
-        .module('myApp.addPost', [
-            'ui.router'
-        ]);
+        .module('myApp.addPost', []);
 
 })();

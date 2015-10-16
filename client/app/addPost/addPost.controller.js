@@ -7,12 +7,13 @@
 
     AddPostController.$inject = [
         '$mdDialog',
+        '$mdToast',
         'authService',
         'firebaseService'
     ];
 
     /* @ngInject */
-    function AddPostController($mdDialog, authService, firebaseService) {
+    function AddPostController($mdDialog, $mdToast, authService, firebaseService) {
 
         var vm = this;
         var user = authService.getUser();
@@ -28,11 +29,7 @@
 
                 vm.postToUpdate
                     .$save()
-                    .then(hideDialog, function (error) {
-                        if (error) {
-                            console.log('Error:', error);
-                        }
-                    });
+                    .then(hideDialog, displayError);
 
             } else {
 
@@ -41,15 +38,22 @@
                         title: vm.article.title,
                         post: vm.article.post,
                         emailId: user
-                    }).then(hideDialog, function (error) {
-                        console.log('Error:', error);
-                    });
+                    }).then(hideDialog, displayError);
             }
 
         }
 
         function hideDialog() {
             $mdDialog.hide();
+        }
+
+        function displayError(error) {
+
+            var toastContent = $mdToast
+                .simple()
+                .content(error);
+
+            $mdToast.show(toastContent);
         }
     }
 

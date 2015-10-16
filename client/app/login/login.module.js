@@ -2,8 +2,6 @@
     'use strict';
 
     angular
-        .module('myApp.login', [
-            'ui.router'
-        ]);
+        .module('myApp.login', []);
 
 })();

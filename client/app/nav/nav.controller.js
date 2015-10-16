@@ -8,11 +8,12 @@
     NavController.$inject = [
         '$rootScope',
         '$state',
+        '$mdToast',
         'authService'
     ];
 
     /* @ngInject */
-    function NavController($rootScope, $state, authService) {
+    function NavController($rootScope, $state, $mdToast, authService) {
 
         var vm = this;
         vm.logout = logout;
@@ -30,7 +31,16 @@
         }
 
         function userInfo() {
-            alert('Not implemented!');
+            displayError('Not implemented!');
+        }
+
+        function displayError(error) {
+
+            var toastContent = $mdToast
+                .simple()
+                .content(error);
+
+            $mdToast.show(toastContent);
         }
     }
 
