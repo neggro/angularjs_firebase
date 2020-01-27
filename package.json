@@ -11,7 +11,7 @@
     },
     "devDependencies": {
         "live-server": "0.8.1",
-        "karma": "~0.10",
+        "karma": "~4.4",
         "protractor": "^1.1.1",
         "shelljs": "^0.2.6",
         "karma-junit-reporter": "^0.2.2"
