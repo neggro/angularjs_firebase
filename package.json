@@ -14,7 +14,7 @@
         "karma": "~0.10",
         "protractor": "^1.1.1",
         "shelljs": "^0.2.6",
-        "karma-junit-reporter": "^0.2.2"
+        "karma-junit-reporter": "^2.0.1"
     },
     "scripts": {
         "dev": "live-server ./client --port=8000 --host=127.0.0.1 --wait=1000",
