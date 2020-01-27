@@ -10,7 +10,7 @@
         "http-server": "0.8.5"
     },
     "devDependencies": {
-        "live-server": "0.8.1",
+        "live-server": "1.2.1",
         "karma": "~0.10",
         "protractor": "^1.1.1",
         "shelljs": "^0.2.6",
