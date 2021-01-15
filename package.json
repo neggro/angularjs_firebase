@@ -6,7 +6,7 @@
     "repository": "https://github.com/neggro/angularjs_firebase",
     "license": "MIT",
     "dependencies": {
-        "bower": "1.5.3",
+        "bower": "1.8.10",
         "http-server": "0.8.5"
     },
     "devDependencies": {
